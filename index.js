@@ -27,7 +27,7 @@ server.on('message', function (message, remote) {
     var keys = Object.keys(data);
     for(var i = 0; i < keys.length; i++) {
         if(chanels.hasOwnProperty(keys[i])){
-            pwmDriver.setPWM(chanels[keys[i]], 0, data[keys[i]]);
+            pwmDriver.setPWM(int(chanels[keys[i]]), 0, int(data[keys[i]]));
         }
     }
 });
