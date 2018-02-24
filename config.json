@@ -1,5 +1,5 @@
 {
-    "head" : "0",
-    "left_leg" : "1",
-    "right_leg" : "2"
+    "base_rotation" : "0",
+    "lower_arm" : "1",
+    "uper_arm" : "2"
 }
