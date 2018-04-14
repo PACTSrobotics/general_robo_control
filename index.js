@@ -1,9 +1,10 @@
 const PORT = 33333;
-const HOST = '192.168.43.210';
+const HOST = '192.168.43.39';
 
 const dgram = require('dgram');
 const server = dgram.createSocket('udp4');
 const fs = require('fs');
+const skills = require('./skills')
 
 const makePwmDriver = require('adafruit-i2c-pwm-driver');
 const pwmDriver = makePwmDriver({address: 0x40, device: '/dev/i2c-1'});
@@ -14,6 +15,8 @@ var chanels;
 var sleep = require('sleep');
 
 server.on('listening', function () {
+    console.log(skills)
+    console.log(skills.servoMotor.execute )
     var address = server.address();
     console.log('UDP Server listening on ' + address.address + ":" + address.port);
     chanels = JSON.parse(fs.readFileSync('./config.json', 'utf8'));
@@ -22,15 +25,19 @@ server.on('listening', function () {
 server.on('message', function (message, remote) {
     console.log(message)
     var data = JSON.parse(message);
-    if(data['robotSelect'] != undefined){
-        chanels = JSON.parse(fs.readFileSync('./configs/'+ data['robotSelect'] +'.json', 'utf8'));
+    let keys = Object.keys(data.commands)
+    for (var i = 0; i < keys.length; i++) {
+        skills[keys[i]].execute(data.commands[keys[i]])
     }
-    var keys = Object.keys(data);
-    for(var i = 0; i < keys.length; i++) {
-        if(chanels.hasOwnProperty(keys[i])){
-            pwmDriver.setPWM(parseInt(chanels[keys[i]]), 0, parseInt(data[keys[i]]));
-        }
-    }
+//    if(data['robotSelect'] != undefined){
+//        chanels = JSON.parse(fs.readFileSync('./configs/'+ data['robotSelect'] +'.json', 'utf8'));
+//    }
+//    var keys = Object.keys(data);
+//    for(var i = 0; i < keys.length; i++) {
+//        if(chanels.hasOwnProperty(keys[i])){
+//            pwmDriver.setPWM(parseInt(chanels[keys[i]]), 0, parseInt(data[keys[i]]));
+//        }
+//    }
 });
 
 server.bind(PORT, HOST);
