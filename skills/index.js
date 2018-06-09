@@ -2,9 +2,10 @@ let skills = {
   servoMotor: require('./servoMotor')
 }
 
-module.exports.execute => (data) {
-  let keys = Object.keys(data.commands)
+exports.execute = (data) => {
+  console.log(data)
+  let keys = Object.keys(data)
   for (var i = 0; i < keys.length; i++) {
-    skills[keys[i]].execute(data.commands[keys[i]])
+    skills[keys[i]].execute(data[keys[i]])
   }
 }

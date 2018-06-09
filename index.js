@@ -12,6 +12,6 @@ server.on('listening', function () {
 
 server.on('message', (message) => {
   var data = JSON.parse(message);
-  skills.executei(data.commands)
+  skills.execute(data.commands)
 })
 server.bind(PORT, HOST);
