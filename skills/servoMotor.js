@@ -8,6 +8,7 @@ var channels;
 channels = JSON.parse(fs.readFileSync('./config.json', 'utf8'));
 
 exports.execute = (data) => {
+	  console.log(channels)
   console.log(data)
   var keys = Object.keys(data);
   for(var i = 0; i < keys.length; i++) {

@@ -1,5 +1,5 @@
 const PORT = 33333;
-const HOST = '192.168.43.39';
+const HOST = '192.168.43.14';
 
 const dgram = require('dgram');
 const server = dgram.createSocket('udp4');
@@ -11,7 +11,11 @@ server.on('listening', function () {
 });
 
 server.on('message', (message) => {
-  var data = JSON.parse(message);
-  skills.execute(data.commands)
+  try {
+    var data = JSON.parse(message);
+    skills.execute(data.commands)
+  } catch (e) {
+    console.log(e)
+  }
 })
 server.bind(PORT, HOST);
