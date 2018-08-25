@@ -1,0 +1,8 @@
+{
+	"uid":"generalrobotcontrol",
+	"append":true,
+	"script":"index.js",
+	"minUptime":"1",
+	"sourceDir":"/home/pi/dev/general_robo_control",
+	"workingDir":"/home/pi/dev/general_robo_control"
+}

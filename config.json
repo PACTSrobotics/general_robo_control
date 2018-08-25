@@ -1,5 +1,4 @@
 {
-    "base_rotation" : "0",
-    "lower_arm" : "1",
-    "uper_arm" : "2"
+    "leftDrive" : "0",
+    "rightDrive" : "1"
 }
