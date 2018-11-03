@@ -1,6 +1,6 @@
 server:
   port: 33333
-  address: 192.168.10.210
+  address: 192.168.43.255
 
 servoMotor:
   enable: true
@@ -8,7 +8,7 @@ servoMotor:
     leftDrive: "0"
     rightDrive: "1"
 
-forwarder:
+forward:
   enable: true
   destinations:
     head:

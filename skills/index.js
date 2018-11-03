@@ -1,5 +1,6 @@
 let skills = {
-  servoMotor: require('./servoMotor')
+  servoMotor: require('./servoMotor'),
+  forward: require('./forward')
 }
 
 exports.execute = (data) => {
