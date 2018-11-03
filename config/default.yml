@@ -1,0 +1,16 @@
+server:
+  port: 33333
+  address: 192.168.10.210
+
+servoMotor:
+  enable: true
+  motors:
+    leftDrive: "0"
+    rightDrive: "1"
+
+forwarder:
+  enable: true
+  destinations:
+    head:
+      host: 192.168.0.1
+      port: 33333
