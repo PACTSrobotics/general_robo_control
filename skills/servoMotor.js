@@ -5,7 +5,7 @@ const pwmDriver = makePwmDriver({address: 0x40, device: '/dev/i2c-1'});
 pwmDriver.setPWMFreq(60);
 
 var channels;
-channels = JSON.parse(fs.readFileSync('./config.json', 'utf8'));
+channels = require('config').servoMotor.motors
 
 exports.execute = (data) => {
 	  console.log(channels)

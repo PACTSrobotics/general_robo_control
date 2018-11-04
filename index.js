@@ -1,5 +1,4 @@
-const PORT = 33333;
-const HOST = '192.168.240.210';
+const config = require('config').server
 
 const dgram = require('dgram');
 const server = dgram.createSocket('udp4');
@@ -18,4 +17,4 @@ server.on('message', (message) => {
     console.log(e)
   }
 })
-server.bind(PORT, HOST);
+server.bind(config.port, config.address);
