@@ -1,0 +1,8 @@
+servoMotor:
+  motors:
+    leftDrive : 0
+    rightDrive" : 1
+  enable: True
+  address: 0x40
+server:
+  port: 5005
