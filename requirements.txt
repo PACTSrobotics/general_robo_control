@@ -1,2 +1,1 @@
-config
 adafruit-circuitpython-servokit

@@ -13,4 +13,4 @@ def execute(data):
 	print(data)
 	for key in data:
 		if key in channels:
-			pwmDriver.setPWM(channels[key], 0, data[key])
+			pwmDriver.servo[channels[key]].angle = data[key]
