@@ -1,18 +1,33 @@
-import './servoMotor'
+from adafruit_servokit import ServoKit
+import yaml
+from playsound import playsound
+
+cfg=yaml.load(open("./config.yml"))
+
+pwmDriver = ServoKit(channels=16)
+
+motors=cfg["servoMotor"]["motors"]
 
 def execute(data):
-	print(data)
-	for keys in data:
-		
+	for key in data:
+		if key =="servoMotor":
+			executeServoMotor(data["servoMotor"])
+		if key == "playsound":
+			executeSound()
 
-# let skills = {
-#   servoMotor: require('./servoMotor')
-# }
+def executeServoMotor(data):
+	for key in data:
+		if key in motors:
+			# print (data[key])
+			pwmDriver.servo[motors[key]].angle = data[key]
+	
+def executeSound():
+	playsound(cfg["sound"]["fileName"])
 
-# exports.execute = (data) => {
-#   console.log(data)
-#   let keys = Object.keys(data)
-#   for (var i = 0; i < keys.length; i++) {
-#     skills[keys[i]].execute(data[keys[i]])
-#   }
-# }
+
+
+
+
+
+# {"commands":{"servoMotor":{"leftDrive":600}, "playsound":1}}
+# {"commands":{"servoMotor":{"leftDrive":600}}}
