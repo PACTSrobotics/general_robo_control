@@ -9,3 +9,8 @@ server:
   address: 127.0.0.1
 sound:
   fileName: dog-barking.wav
+head:
+  motor: 0
+  lights: 0
+  port: 6969
+  address: 127.0.0.1
