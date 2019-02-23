@@ -6,3 +6,6 @@ servoMotor:
   address: 0x40
 server:
   port: 5005
+  address: 127.0.0.1
+sound:
+  fileName: dog-barking.wav
