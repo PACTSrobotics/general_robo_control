@@ -1,6 +1,8 @@
 from adafruit_servokit import ServoKit
 import yaml
 from playsound import playsound
+import subprocess
+
 
 cfg=yaml.load(open("./config.yml"))
 
@@ -22,7 +24,7 @@ def executeServoMotor(data):
 			pwmDriver.servo[motors[key]].angle = data[key]
 	
 def executeSound():
-	playsound(cfg["sound"]["fileName"])
+	subprocess.Popen(["omxplayer",cfg["sound"]["fileName"]])
 
 
 
