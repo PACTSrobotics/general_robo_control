@@ -37,7 +37,7 @@ def forwarder(data):
 	for key in data:
 		if key in parts:
 			UDP_IP = cfg["forward"][key]["address"]
-			UDP_PORT = cfg["server"][key]["port"]
+			UDP_PORT = cfg["forward"][key]["port"]
 			sock = socket.socket(socket.AF_INET, # Internet
 				socket.SOCK_DGRAM) # UDP
 			message=data[key]
