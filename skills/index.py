@@ -1,6 +1,6 @@
 from adafruit_servokit import ServoKit
 import yaml
-from playsound import playsound
+#from playsound import playsound
 import subprocess
 import socket
 
@@ -40,8 +40,8 @@ def forwarder(data):
 			UDP_PORT = cfg["server"][key]["port"]
 			sock = socket.socket(socket.AF_INET, # Internet
 				socket.SOCK_DGRAM) # UDP
-
-			sock.sendto(MESSAGE, (UDP_IP, UDP_PORT))
+			message=data[key]
+			sock.sendto(message, (UDP_IP, UDP_PORT))
 			
 
 def executeLights(data):
