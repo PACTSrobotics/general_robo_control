@@ -2,6 +2,7 @@ from adafruit_servokit import ServoKit
 import yaml
 from playsound import playsound
 import subprocess
+import socket
 
 
 cfg=yaml.load(open("./config.yml"))
@@ -9,6 +10,7 @@ cfg=yaml.load(open("./config.yml"))
 pwmDriver = ServoKit(channels=16)
 
 motors=cfg["servoMotor"]["motors"]
+parts=cfg["forward"]
 
 def execute(data):
 	for key in data:
@@ -16,6 +18,11 @@ def execute(data):
 			executeServoMotor(data["servoMotor"])
 		if key == "playsound":
 			executeSound()
+		if key == "lights":
+			executeLights(data["lights"])
+		if key == "forward":
+			forwarder(data["forward"])
+
 
 def executeServoMotor(data):
 	for key in data:
@@ -26,10 +33,35 @@ def executeServoMotor(data):
 def executeSound():
 	subprocess.Popen(["omxplayer",cfg["sound"]["fileName"]])
 
+def forwarder(data):
+	for key in data:
+		if key in parts:
+			UDP_IP = cfg["forward"][key]["address"]
+			UDP_PORT = cfg["server"][key]["port"]
+			sock = socket.socket(socket.AF_INET, # Internet
+				socket.SOCK_DGRAM) # UDP
+
+			sock.sendto(MESSAGE, (UDP_IP, UDP_PORT))
+			
+
+def executeLights(data):
+	pin = cfg["lights"]["pin"]
+	if data==0:
+		#set pin to off
+		pass
+	elif data == 1:
+		#set pin to on
+		pass
+	
 
 
 
 
 
-# {"commands":{"servoMotor":{"leftDrive":600}, "playsound":1}}
-# {"commands":{"servoMotor":{"leftDrive":600}}}
+# {"commands":{"servoMotor":{"leftDrive":90}, "playsound":1}}
+# {"commands":{"servoMotor":{"leftDrive":90}}}
+# {	"servoMotor":{"leftDrive":90}, 
+# 	"playsound":1,
+# 	"forward":{'head':{"commands":{"lights":1, 'servoMotor':{"mainDrive":90}}}}
+# }
+# {"commands":{"forward":{"head":{"commands":{"sevoMotor":{"mainDrive":90}}}}, "playsound":1}}
