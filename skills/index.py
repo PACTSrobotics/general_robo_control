@@ -40,7 +40,7 @@ def forwarder(data):
 			UDP_PORT = cfg["forward"][key]["port"]
 			sock = socket.socket(socket.AF_INET, # Internet
 				socket.SOCK_DGRAM) # UDP
-			message=data[key]
+			message=bytearray(data[key], "utf-8")
 			sock.sendto(message, (UDP_IP, UDP_PORT))
 			
 
