@@ -3,6 +3,7 @@ import yaml
 #from playsound import playsound
 import subprocess
 import socket
+import json
 
 
 cfg=yaml.load(open("./config.yml"))
@@ -40,7 +41,7 @@ def forwarder(data):
 			UDP_PORT = cfg["forward"][key]["port"]
 			sock = socket.socket(socket.AF_INET, # Internet
 				socket.SOCK_DGRAM) # UDP
-			message=bytearray(data[key], "utf-8")
+			message=bytearray(json.dumps(data[key]), "utf-8")
 			sock.sendto(message, (UDP_IP, UDP_PORT))
 			
 
