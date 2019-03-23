@@ -14,4 +14,6 @@ head:
   lights: 0
   port: 6969
   address: 127.0.0.1
-
+digitalIO: 
+  pins:
+    led0: 0

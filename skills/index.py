@@ -4,7 +4,10 @@ import yaml
 import subprocess
 import socket
 import json
-
+import board
+import busio
+import digitalio
+import adafruit_mcp230xx
 
 cfg=yaml.load(open("./config.yml"))
 
@@ -12,6 +15,12 @@ pwmDriver = ServoKit(channels=16)
 
 motors=cfg["servoMotor"]["motors"]
 parts=cfg["forward"]
+
+i2c = busio.I2C(board.SCL, board.SDA)
+mcp = adafruit_mcp230xx.MCP23017(i2c)  # MCP23017
+count = 0
+while count < 16:
+  mcp.get_pin(key).switch_to_output(value=True)
 
 def execute(data):
 	for key in data:
@@ -23,6 +32,8 @@ def execute(data):
 			executeLights(data["lights"])
 		if key == "forward":
 			forwarder(data["forward"])
+		if key == "digitalIO":
+			executeDigitalIO(data["forward"])
 
 
 def executeServoMotor(data):
@@ -30,7 +41,7 @@ def executeServoMotor(data):
 		if key in motors:
 			# print (data[key])
 			pwmDriver.servo[motors[key]].angle = data[key]
-	
+
 def executeSound():
 	subprocess.Popen(["omxplayer",cfg["sound"]["fileName"]])
 
@@ -43,7 +54,7 @@ def forwarder(data):
 				socket.SOCK_DGRAM) # UDP
 			message=bytearray(json.dumps(data[key]), "utf-8")
 			sock.sendto(message, (UDP_IP, UDP_PORT))
-			
+
 
 def executeLights(data):
 	pin = cfg["lights"]["pin"]
@@ -53,15 +64,18 @@ def executeLights(data):
 	elif data == 1:
 		#set pin to on
 		pass
-	
 
+def executeDigitalIO(data):
+  for key in data:
+
+    mcp.get_pin(key).value = data[key]
 
 
 
 
 # {"commands":{"servoMotor":{"leftDrive":90}, "playsound":1}}
 # {"commands":{"servoMotor":{"leftDrive":90}}}
-# {	"servoMotor":{"leftDrive":90}, 
+# {	"servoMotor":{"leftDrive":90},
 # 	"playsound":1,
 # 	"forward":{'head':{"commands":{"lights":1, 'servoMotor':{"mainDrive":90}}}}
 # }
