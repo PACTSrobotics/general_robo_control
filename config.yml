@@ -14,9 +14,10 @@ digitalIO:
     led0: 0
 forward:
   head:
-    port: 6969
-    address: 127.0.0.1
-
+    motor: 0
+    lights: 0
+    port: 5005
+    address: 192.168.43.41
 
 
 # servoMotor:
