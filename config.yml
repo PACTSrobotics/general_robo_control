@@ -1,7 +1,7 @@
 servoMotor:
   motors:
     leftDrive : 0
-    rightDrive" : 1
+    rightDrive : 1
   enable: True
   address: 0x40
 server:
@@ -9,11 +9,18 @@ server:
   address: 192.168.43.14
 sound:
   fileName: dog-barking.wav
-head:
-  motor: 0
-  lights: 0
-  port: 6969
-  address: 127.0.0.1
 digitalIO: 
   pins:
     led0: 0
+forward:
+  head:
+    port: 6969
+    address: 127.0.0.1
+
+
+
+# servoMotor:
+#   motors:
+#     mainDrive: 0
+# lights:
+#   pin: 18

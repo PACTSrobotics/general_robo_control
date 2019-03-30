@@ -15,12 +15,14 @@ pwmDriver = ServoKit(channels=16)
 
 motors=cfg["servoMotor"]["motors"]
 parts=cfg["forward"]
+pins = cfg["digitalIO"]["pins"]
 
 i2c = busio.I2C(board.SCL, board.SDA)
 mcp = adafruit_mcp230xx.MCP23017(i2c)  # MCP23017
-count = 0
-while count < 16:
-  mcp.get_pin(key).switch_to_output(value=True)
+
+for i in range(16):
+	mcp.get_pin(i).switch_to_output(value=True)
+
 
 def execute(data):
 	for key in data:
@@ -30,6 +32,7 @@ def execute(data):
 			executeSound()
 		if key == "lights":
 			executeLights(data["lights"])
+
 		if key == "forward":
 			forwarder(data["forward"])
 		if key == "digitalIO":
@@ -66,17 +69,27 @@ def executeLights(data):
 		pass
 
 def executeDigitalIO(data):
-  for key in data:
-
-    mcp.get_pin(key).value = data[key]
+	for key in data:
+  		if key in pins:
+	    	mcp.get_pin(pins[key]).value = data[key]
 
 
 
 
 # {"commands":{"servoMotor":{"leftDrive":90}, "playsound":1}}
 # {"commands":{"servoMotor":{"leftDrive":90}}}
+
+
+
 # {	"servoMotor":{"leftDrive":90},
 # 	"playsound":1,
 # 	"forward":{'head':{"commands":{"lights":1, 'servoMotor':{"mainDrive":90}}}}
 # }
+
+
+
 # {"commands":{"forward":{"head":{"commands":{"sevoMotor":{"mainDrive":90}}}}, "playsound":1}}
+
+#{"commands":{"forward":{"head":{"commands":{"servoMotor":{"mainDrive":90}}}}}}
+#{"commands":{"forward":{"head":{"commands":{"servoMotor":{"mainDrive":95}}}}}}
+
