@@ -70,8 +70,8 @@ def executeLights(data):
 
 def executeDigitalIO(data):
 	for key in data:
-  		if key in pins:
-	    	mcp.get_pin(pins[key]).value = data[key]
+		if key in pins:
+			mcp.get_pin(pins[key]).value = data[key]
 
 
 
