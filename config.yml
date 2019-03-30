@@ -8,8 +8,10 @@ server:
   port: 5005
   address: 192.168.43.14
 sound:
+  enable: True
   fileName: dog-barking.wav
 digitalIO: 
+  enable: False
   pins:
     led0: 0
 forward:

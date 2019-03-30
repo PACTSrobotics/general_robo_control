@@ -17,11 +17,13 @@ motors=cfg["servoMotor"]["motors"]
 parts=cfg["forward"]
 pins = cfg["digitalIO"]["pins"]
 
-i2c = busio.I2C(board.SCL, board.SDA)
-mcp = adafruit_mcp230xx.MCP23017(i2c)  # MCP23017
+if config["digitalIO"]["enable"]:
 
-for i in range(16):
-	mcp.get_pin(i).switch_to_output(value=True)
+	i2c = busio.I2C(board.SCL, board.SDA)
+	mcp = adafruit_mcp230xx.MCP23017(i2c)  # MCP23017
+
+	for i in range(16):
+		mcp.get_pin(i).switch_to_output(value=True)
 
 
 def execute(data):
