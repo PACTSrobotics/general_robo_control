@@ -41,7 +41,7 @@ def execute(data):
 		if key == "forward":
 			forwarder(data["forward"])
 		if key == "digitalIO":
-			executeDigitalIO(data["forward"])
+			executeDigitalIO(data["digitalIO"])
 
 
 def executeServoMotor(data):
@@ -91,7 +91,7 @@ def executeDigitalIO(data):
 # 	"forward":{'head':{"commands":{"lights":1, 'servoMotor':{"mainDrive":90}}}}
 # }
 
-
+#{"commands":{"digitalIO":{"led0":1}}}
 
 # {"commands":{"forward":{"head":{"commands":{"sevoMotor":{"mainDrive":90}}}}, "playsound":1}}
 
