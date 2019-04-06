@@ -11,11 +11,14 @@ import adafruit_mcp230xx
 
 cfg=yaml.load(open("./config.yml"))
 
-pwmDriver = ServoKit(channels=16)
 
 motors=cfg["servoMotor"]["motors"]
 parts=cfg["forward"]
 pins = cfg["digitalIO"]["pins"]
+
+if cfg["servoMotor"]["enable"]:
+
+    pwmDriver = ServoKit(channels=16)
 
 if cfg["digitalIO"]["enable"]:
 
