@@ -18,7 +18,7 @@ pins = cfg["digitalIO"]["pins"]
 
 if cfg["servoMotor"]["enable"]:
 
-    pwmDriver = ServoKit(channels=16)
+	pwmDriver = ServoKit(channels=16)
 
 if cfg["digitalIO"]["enable"]:
 
