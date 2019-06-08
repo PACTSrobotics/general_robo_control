@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+print('hi')
 from skills.index import execute
 import socket
 import json
@@ -13,7 +14,7 @@ UDP_PORT = cfg["server"]["port"]
 sock = socket.socket(socket.AF_INET, # Internet
                      socket.SOCK_DGRAM) # UDP
 sock.bind((UDP_IP, UDP_PORT))
-
+print("listening on port", UDP_PORT)
 while True:
     data, addr = sock.recvfrom(1024) # buffer size is 1024 bytes
     data = data.decode('utf-8').strip()
