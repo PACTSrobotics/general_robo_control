@@ -1,0 +1,8 @@
+servoMotor:
+  motors:
+    mainDrive : 0
+  enable: True
+  address: 0x40
+server:
+  port: 5005
+  address: 192.168.43.41
