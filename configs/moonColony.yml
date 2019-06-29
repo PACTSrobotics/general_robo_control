@@ -1,0 +1,47 @@
+servoMotor:
+  motors:
+    solarpnl1: 0
+    solarpnl2: 3
+    solarpnl3: 4
+  enable: True
+  address: 0x40
+server:
+  port: 5005
+  address: 192.168.8.112
+sound:
+  enable: False
+  fileName: dog-barking.wav
+digitalIO: 
+  enable: True
+  pins:
+    hubLED1: 0
+    hubLED2: 1
+    recLED1: 2
+    recLED2: 3
+    # SKIP PORT 4. Too broken to be useful.
+    towerLED: 7
+    houselED1: 10
+    houseLED2: 11
+    houseLED3: 12
+forward:
+  head:
+    motor: 0
+    lights: 0
+    port: 5005
+    address: 192.168.43.41
+
+
+# servoMotor:
+#   motors:
+#     mainDrive: 0
+# lights:
+
+    #   pin: 18
+#  /\_/\
+# (^=.=^)
+#  |||||
+# /     \
+# |  _  |
+# | / \ |
+# |_| |_|
+# 
