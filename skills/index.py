@@ -15,6 +15,7 @@ cfg=yaml.load(open("./config.yml"))
 motors=cfg["servoMotor"]["motors"]
 parts=cfg["forward"]
 pins = cfg["digitalIO"]["pins"]
+sounds=cfg["sound"]
 
 if cfg["servoMotor"]["enable"]:
 
@@ -50,8 +51,11 @@ def executeServoMotor(data):
 			# print (data[key])
 			pwmDriver.servo[motors[key]].angle = data[key]
 
-def executeSound():
-	subprocess.Popen(["omxplayer",cfg["sound"]["fileName"]])
+def executeSound(data):
+	for key in data:
+		if key in sounds:
+			subprocess.Popen(["omxplayer", sounds[key]])
+	#subprocess.Popen(["omxplayer",cfg["sound"]["fileName"]])
 
 def forwarder(data):
 	for key in data:

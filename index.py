@@ -23,6 +23,7 @@ while True:
     try:
         print("listening")
         data, addr = sock.recvfrom(1024) # buffer size is 1024 bytes
+        print(data)
         data = data.decode('utf-8').strip()
         jdata = json.loads(data)
         execute(jdata['commands'])
@@ -34,6 +35,7 @@ while True:
             val=cfg["servoMotor"]["stop"][drive]
             data["servoMotor"][drive]=val
         print(data)
+        execute(data)
 
         
 
