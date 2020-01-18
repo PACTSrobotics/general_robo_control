@@ -35,7 +35,7 @@ def execute(data):
 		if key =="servoMotor":
 			executeServoMotor(data["servoMotor"])
 		if key == "playsound":
-			executeSound()
+			executeSound(data["playsound"])
 		if key == "lights":
 			executeLights(data["lights"])
 
@@ -51,10 +51,12 @@ def executeServoMotor(data):
 			# print (data[key])
 			pwmDriver.servo[motors[key]].angle = data[key]
 
-def executeSound(data):
-	for key in data:
-		if key in sounds:
-			subprocess.Popen(["omxplayer", sounds[key]])
+def executeSound(key):
+	print("here", key)
+	#for key in data:
+	if key in sounds:
+		print("playing", sounds[key])
+		subprocess.Popen(["omxplayer", sounds[key]])
 	#subprocess.Popen(["omxplayer",cfg["sound"]["fileName"]])
 
 def forwarder(data):

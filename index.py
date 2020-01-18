@@ -23,8 +23,9 @@ while True:
     try:
         print("listening")
         data, addr = sock.recvfrom(1024) # buffer size is 1024 bytes
-        print(data)
+        #print(data)
         data = data.decode('utf-8').strip()
+        print(data)#data=str(data)
         jdata = json.loads(data)
         execute(jdata['commands'])
         print ("received message:", data)
