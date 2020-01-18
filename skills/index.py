@@ -44,12 +44,15 @@ def execute(data):
 		if key == "digitalIO":
 			executeDigitalIO(data["digitalIO"])
 
-
 def executeServoMotor(data):
 	for key in data:
 		if key in motors:
 			# print (data[key])
-			pwmDriver.servo[motors[key]].angle = data[key]
+			if data[key] == 90:
+				stopValue = cfg['servoMotor']['stop'][key]
+				pwmDriver.servo[motors[key]].angle = stopValue
+			else:
+				pwmDriver.servo[motors[key]].angle = data[key]
 
 def executeSound(data):
 	for key in data:
@@ -87,6 +90,9 @@ def executeDigitalIO(data):
 
 # {"commands":{"servoMotor":{"leftDrive":90}, "playsound":1}}
 # {"commands":{"servoMotor":{"leftDrive":90}}}
+# {"commands":{"servoMotor":{"rightDrive":90}}}
+# {"commands":{"servoMotor":{"leftDrive":120, "rightDrive":120}}}
+# {"commands":{"playsound":1}}
 
 
 
