@@ -19,6 +19,8 @@ sound:
   exterminate: Exterminate.mp3
   prepare: Prepare.mp3
   surviveinme: SurviveInMe.mp3
+  hohohoho: hohohoho.mp3
+  happy holidays: happy-holidays.mp3
 digitalIO: 
   enable: False
   pins:
