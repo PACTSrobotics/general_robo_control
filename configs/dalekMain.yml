@@ -1,36 +1,34 @@
 servoMotor:
-  motors:
-    leftDrive : 0
-    rightDrive : 1
-  stop:
-    leftDrive: 95
-    rightDrive: 90
-  enable: True
-  address: 0x40
+    motors:
+        leftDrive: 0
+        rightDrive: 1
+    stop:
+        leftDrive: 95
+        rightDrive: 90
+    enable: True
+    address: 0x40
 server:
-  port: 5005
-  address: 192.168.8.246
-  timeout: 2
-sound:
-  enable: True
-  dog: dog-barking.wav
-  beginning: Beginning.mp3
-  emerge: Emerge.mp3
-  exterminate: Exterminate.mp3
-  prepare: Prepare.mp3
-  surviveinme: SurviveInMe.mp3
-digitalIO: 
-  enable: False
-  pins:
-    led0: 0
-forward:
-  head:
-    motor: 0
-    lights: 0
     port: 5005
     address: 192.168.8.246
-
-
+    timeout: 0.5
+sound:
+    enable: True
+    dog: dog-barking.wav
+    beginning: Beginning.mp3
+    emerge: Emerge.mp3
+    exterminate: Exterminate.mp3
+    prepare: Prepare.mp3
+    surviveinme: SurviveInMe.mp3
+digitalIO:
+    enable: False
+    pins:
+        led0: 0
+forward:
+    head:
+        motor: 0
+        lights: 0
+        port: 5005
+        address: 192.168.8.246
 # servoMotor:
 #   motors:
 #     mainDrive: 0

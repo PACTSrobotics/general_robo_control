@@ -1,9 +1,10 @@
 #!/usr/bin/python3
-print('hi')
+print("HI HELLO HEY")
 from skills.index import execute
 import socket
 import json
 import yaml
+import time
 
 cfg=yaml.load(open("./config.yml"))
 
@@ -14,12 +15,19 @@ timeout = cfg["server"]["timeout"]
 
 sock = socket.socket(socket.AF_INET, # Internet
                      socket.SOCK_DGRAM) # UDP
-sock.bind((UDP_IP, UDP_PORT))
+
+connectedToWifi = False
+while not connectedToWifi:
+    try:
+        sock.bind((UDP_IP, UDP_PORT))
+        connectedToWifi = True
+    except OSError:
+        time.sleep(2)
+
 # sock.setblocking(0)
 sock.settimeout(timeout)
 print("listening on port", UDP_PORT)
 while True:
-    # with timeout(seconds=3):
     try:
         print("listening")
         data, addr = sock.recvfrom(1024) # buffer size is 1024 bytes
